@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hudong.b16live.mapper.TLiveSpeakerMapper">
+
+    <resultMap id="BaseResultMap" type="com.hudong.b16live.bean.TLiveSpeaker" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="LIVE_ID" property="liveId" jdbcType="INTEGER" />
+        <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+        <result column="MSG" property="msg" jdbcType="VARCHAR" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER" />
+    </resultMap>
+
+    <!--保存主讲信息-->
+    <insert id="saveTLiveSpeaker" parameterType="com.hudong.b16live.bean.TLiveSpeaker"
+            useGeneratedKeys="true" keyProperty="bean.id">
+        insert into t_live_speaker(ACCOUNT,LIVE_ID,CREATE_TIME,MSG,DEL_FLAG)
+        values(#{bean.account},#{bean.liveId},#{bean.createTime},#{bean.msg},#{bean.delFlag})
+    </insert>
+    <select id="findSpeakerRecordByLiveId" resultMap="BaseResultMap" >
+        select * from t_live_speaker where LIVE_ID=#{liveId}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+    <springProperty scope="context" name="loggingRoot" source="log.loggingRoot"/>
+    <springProperty scope="context" name="loggingLevel" source="log.loggingLevel"/>
+
+    <!-- ===================================================================== -->
+    <!-- Appenders                                                             -->
+    <!-- ===================================================================== -->
+    <!-- ===== [公共Appender] ===== -->
+    <!-- [公共Appender] 默认 -->
+    <appender name="DEFAULT-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="file" value="${loggingRoot}/common-default.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>common-default.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+    
+    <!-- [公共Appender] 汇总错误 -->
+    <appender name="ERROR-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="file" value="${loggingRoot}/common-error.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>common-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+    <!-- [公共Appender] 汇总性能统计 -->
+    <appender name="PERF-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="file" value="${loggingRoot}/common-perf.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>common-perf.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+    <!-- [公共Appender] 控制台STDOUT -->
+    <appender name="STDOUT-APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <param name="encoding" value="GBK"/>
+        <param name="target" value="System.out"/>
+        <encoder>
+            <pattern>%-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+    <!-- [公共Appender] 控制台STDERR -->
+    <appender name="STDERR-APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+        <param name="encoding" value="GBK"/>
+        <param name="target" value="System.err"/>
+        <encoder>
+            <pattern>%-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+    <!-- [公共Appender] 空 -->
+    <!--<appender name="NULL-APPENDER" class="org.apache.log4j.varia.NullAppender"/>-->
+    <!-- [公共Appender] Jakarta commons -->
+    <appender name="APACHE-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="file" value="${loggingRoot}/common-apache.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>common-apache.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+    <!-- [公共Appender] 数据访问层 -->
+    <appender name="DAO-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="file" value="${loggingRoot}/common-dao.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>common-dao.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+    <!-- ===== [框架Appender] ===== -->
+    <!-- [框架Appender] USFP 基础设施 - 默认 -->
+    <appender name="USFP-DEFAULT-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="file" value="${loggingRoot}/b16live-default.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>baike-default.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+
+    <!-- ===== [应用Appender] ===== -->
+    <!-- [应用Appender] 默认 -->
+    <appender name="b16live-DEFAULT-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="file" value="${loggingRoot}/baike-defined/b16live-default.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>baike-defined/b16live-default.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+
+    <!-- [应用Appender] 应用业务处理结果日志 -->
+    <appender name="b16live-BUSINESS-RESULT-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="file" value="${loggingRoot}/user-defined/b16live-biz-result.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>user-defined/b16live-biz-result.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+
+	<appender name="MY-APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="file" value="${loggingRoot}/user-defined/b16live-my.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>b16live-my.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d %-5p %c{2} - %m%n</pattern>
+            <charset>GBK</charset>
+        </encoder>
+    </appender>
+
+    <!-- ===================================================================== -->
+    <!-- Loggers                                                               -->
+    <!-- ===================================================================== -->
+    <!-- [公共Logger] 控制台STDOUT - STDOUT -->
+    <logger name="STDOUT" additivity="false">
+        <level value="${loggingLevel}"/>
+        <appender-ref ref="STDOUT-APPENDER"/>
+    </logger>
+    <!-- [公共Logger] 控制台STDERR - STDERR -->
+    <logger name="STDERR" additivity="false">
+        <level value="${loggingLevel}"/>
+        <appender-ref ref="STDERR-APPENDER"/>
+    </logger>
+    <!-- ===== [框架Logger] ===== -->
+    <!-- [框架Logger] Jakarta commons - 默认 -->
+    <logger name="org.apache" additivity="false">
+        <level value="${loggingLevel}"/>
+        <appender-ref ref="APACHE-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+    </logger>
+    <!-- [框架Logger] Jakarta commons - beanutils -->
+    <logger name="org.apache.commons.beanutils">
+        <level value="${loggingLevel}"/>
+        <appender-ref ref="APACHE-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+    </logger>
+    <!-- [框架Logger] 数据访问层 - Ibatis -->
+    <logger name="com.ibatis" additivity="false">
+        <level value="${loggingLevel}"/>
+        <appender-ref ref="DAO-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+    </logger>
+    <!-- [框架Logger] 数据访问层 - mybatis -->
+    <logger name="org.mybatis" additivity="false">
+        <level value="${loggingLevel}"/>
+        <appender-ref ref="DAO-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+    </logger>
+    <!-- [框架Logger] 数据访问层 - SQL -->
+    <logger name="java.sql" additivity="false">
+        <level value="${loggingLevel}"/>
+        <appender-ref ref="DAO-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+    </logger>
+
+    <root level="${loggingLevel}">
+        <appender-ref ref="DEFAULT-APPENDER"/>
+        <appender-ref ref="ERROR-APPENDER"/>
+        <appender-ref ref="STDOUT-APPENDER"/>
+    </root>
+    <root level="${myLoggingLevel}">
+        <appender-ref ref="MY-APPENDER"/>
+    </root>
+</configuration>

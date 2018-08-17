@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hudong.b16live.mapper.TLiveUserSubscribeMapper">
+
+    <resultMap id="BaseResultMap" type="com.hudong.b16live.bean.TLiveUserSubscribe" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="LIVE_ID" property="liveId" jdbcType="INTEGER" />
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="PUSH_STATUS" property="pushStatus" jdbcType="INTEGER" />
+        <result column="DEL_FLAG" property="delFlag" jdbcType="INTEGER" />
+    </resultMap>
+
+    <!--删除订阅信息-->
+    <delete id="removeTLiveUserSubscribe" parameterType="com.hudong.b16live.bean.TLiveUserSubscribe">
+        update  t_live_user_subscribe  set DEL_FLAG=1
+        where  DEL_FLAG=0
+        <if test="bean.userId!= null and bean.userId!='' ">
+            and USER_ID=#{bean.userId}
+        </if>
+        <if test="bean.liveId != null and bean.liveId !='' ">
+           and  LIVE_ID=#{bean.liveId}
+        </if>
+    </delete>
+    <!--保存订阅信息-->
+    <insert id="saveTLiveUserSubscribe" parameterType="com.hudong.b16live.bean.TLiveUserSubscribe"
+            useGeneratedKeys="true" keyProperty="bean.id">
+        insert into t_live_user_subscribe(USER_ID,LIVE_ID,CREATE_TIME,USER_NAME,PUSH_STATUS,DEL_FLAG)
+        values(#{bean.userId},#{bean.liveId},#{bean.createTime},#{bean.userName},#{bean.pushStatus},#{bean.delFlag})
+    </insert>
+    <!--获取订阅详情-->
+    <select id="getTLiveUserSubscribe"  parameterType="com.hudong.b16live.bean.TLiveUserSubscribe" resultMap="BaseResultMap">
+        select   * from t_live_user_subscribe where USER_ID=#{bean.userId} AND  LIVE_ID=#{bean.liveId}
+    </select>
+    <!--通过直播ID获取订阅列表-->
+    <select id="getSubscribeListByLiveId"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select * from t_live_user_subscribe where  PUSH_STATUS=1 and  LIVE_ID=#{liveId} and DEL_FLAG=0
+    </select>
+    <!--通过直播ID获取订阅列表-->
+    <update id="updateSubscribeListByLiveId"  parameterType="java.lang.Integer" >
+       UPDATE t_live_user_subscribe SET PUSH_STATUS=2 where   DEL_FLAG=0 AND  LIVE_ID=#{liveId}
+    </update>
+    <!--更新订阅信息-->
+    <update id="updateTLiveUserSubscribe"  parameterType="com.hudong.b16live.bean.TLiveUserSubscribe">
+        UPDATE t_live_user_subscribe SET DEL_FLAG=#{bean.delFlag} where   USER_ID=#{bean.userId} AND  LIVE_ID=#{bean.liveId}
+    </update>
+</mapper>

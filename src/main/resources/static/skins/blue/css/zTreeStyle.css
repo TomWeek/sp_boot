@@ -1,0 +1,37 @@
+body{word-wrap:break-word;}
+.innermenu_ctrl{border-bottom:1px solid #fff;text-align:right;background:#f7f7f7;margin-top:13px;}
+.zTreeDemoBackground{background:#f2f2f2;}
+.innermenu_tit{padding:10px 0 0 35px;background:url(../images/ztree/ztreename_icon.png) no-repeat 13px 12px #f7f7f7;line-height:22px;font-size:12px;}
+.ztreeclose,.ztreeopen{display:inline-block;width:18px;height:9px;background:url(../images/ztree/ztreeclose.png) no-repeat right center;margin:8px;}
+.ztreeopen{background:url(../images/ztree/ztreeopen.png) no-repeat right center;}
+.ztree {padding:0px 5px 0 15px;color:#333;background:#f7f7f7;}
+ul.ztree {overflow:auto;word-wrap:normal;}
+.ztree li{padding:0; margin:0; list-style:none; text-align:left; white-space:nowrap; outline:0;}
+.ztree li ul{padding:0 0 0 24px;}
+.ztree li ul.line{ background:url(../images/ztree/line_conn.png) 0 0 repeat-y;}
+.ztree li a {margin:0; cursor:pointer;color:#333; background-color: transparent;
+	text-decoration:none; vertical-align:top; display: inline-block;margin-top:8px;overflow:hidden;}
+.ztree li a:hover {color:#ff0000;}
+.ztree li a.curSelectedNode { background-color:#ccc;}
+.ztree li a.curSelectedNode_Edit {padding-top:0px; background-color:#FFE6B0; color:black; height:14px; border:1px #FFB951 solid; opacity:0.8;}
+.ztree li a.tmpTargetNode_inner {padding-top:0px; background-color:#316AC5; color:white; height:14px; border:1px #316AC5 solid;opacity:0.8; filter:alpha(opacity=80)}
+.ztree li span {line-height:14px;}
+.ztree li span.zTreebtn {line-height:0; width:14px; height:20px; display: inline-block; vertical-align:top;cursor: pointer;outline:none;}
+.ztree li span.zTreebtn.switch {width:20px; height:28px;overflow:hidden;}
+.ztree li span.zTreebtn.root_open{background-position:-92px -54px}
+.ztree li span.zTreebtn.root_close{background-position:-74px -54px}
+.ztree li span.roots_open{background:url(../images/ztree/roots_open.png) no-repeat left center;}
+.ztree li span.roots_close{background:url(../images/ztree/roots_close.png) no-repeat left center;}
+.ztree li span.center_open{background:url(../images/ztree/roots_open.png) no-repeat left center;}
+.ztree li span.center_close{background:url(../images/ztree/roots_close.png) no-repeat left center;}
+.ztree li span.bottom_open{background:url(../images/ztree/bottom_open.png) no-repeat left center;}
+.ztree li span.bottom_close{background:url(../images/ztree/bottom_close.png) no-repeat left center;}
+.ztree li span.zTreebtn.root_docu{ background:none;}
+.ztree li span.center_docu{background:url(../images/ztree/center_docu.png) no-repeat left center;}
+.ztree li span.bottom_docu{background:url(../images/ztree/bottom_docu.png) no-repeat left center;}
+.ztree li span.zTreebtn.noline_docu{ background:none;}
+.ztree li span.zTreebtn.ico_open{margin-right:2px;background:url(../images/ztree/folderopen.png) no-repeat left top; vertical-align:top;}
+.ztree li span.zTreebtn.ico_close{margin-right:2px; background:url(../images/ztree/folderclose.png) no-repeat left top; vertical-align:top;}
+.ztree li span.zTreebtn.ico_docu{margin-right:2px; background:url(../images/ztree/file.png) no-repeat left top;vertical-align:top;}
+.ztree li span.zTreebtn.ico_loading{margin-right:2px; background:url(../images/ztree/loading.gif) no-repeat scroll 0 0 transparent; vertical-align:top;}
+.ztree li a b{color:#ff0000;}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus庐">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+ <div  id="container"></div>
+ <script type="text/javascript" src="http://www.huimg.cn/??lib/jquery-1.6.4.min.js"></script>
+ <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    $(function(){
+
+        $.ajax({
+            type : "get",
+            url : "/wechatParam",
+            dataType : "json",
+            async : false,
+            success : function(data) {
+                console.log(data);
+                wx.config({
+                    debug: true,////生产环境需要关闭debug模式
+                    appId: data.appId,//appId通过微信服务号后台查看
+                    timestamp: data.timestamp,//生成签名的时间戳
+                    nonceStr: data.nonceStr,//生成签名的随机字符串
+                    signature: data.signature,//签名
+                    jsApiList: [//需要调用的JS接口列表
+                        'onMenuShareTimeline',
+                        'onMenuShareAppMessage',
+                        'onMenuShareQQ',
+                        'onMenuShareQZone'
+                    ]
+                });
+                readyWX();
+            },
+            error: function(xhr, status, error) {
+                //alert(status);
+                //alert(xhr.responseText);
+            }
+        })
+    });
+    function readyWX(){
+
+        wx.ready(function () {
+            //分享朋友圈
+            wx.onMenuShareTimeline({
+                title: "设置标题",
+                desc: '微信分享测试0319',
+                link: 'http://lore.baike.com/share.html',
+                imgUrl: 'http://www.huimg.cn/public/images/baikelogo-header2013.gif',
+                success: function () {
+                    alert("分享到朋友圈成功")
+                },
+                cancel: function () {
+                    //用户取消分享后执行的回调函数
+                }
+            });
+            //分享给朋友
+            wx.onMenuShareAppMessage({
+                title: "设置标题",
+                desc: '微信分享测试0319',
+                link: 'http://lore.baike.com/share.html',
+                imgUrl: 'http://www.huimg.cn/public/images/baikelogo-header2013.gif',
+                type: 'link', //分享类型,music、video或link，不填默认为link
+                dataUrl: '', //如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    //用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    //用户取消分享后执行的回调函数
+                }
+            });
+            //分享到QQ
+            wx.onMenuShareQQ({
+                title: "设置标题",
+                desc: '微信分享测试0319',
+                link: 'http://lore.baike.com/share.html',
+                imgUrl: 'http://www.huimg.cn/public/images/baikelogo-header2013.gif',
+                success: function () {
+                    alert("分享到QQ成功")
+                },
+                cancel: function () {
+                    //用户取消分享后执行的回调函数
+                }
+            });
+            //分享到QQ空间
+            wx.onMenuShareQZone({
+                title: "设置标题",
+                desc: '微信分享测试0319',
+                link: 'http://lore.baike.com/share.html',
+                imgUrl: 'http://www.huimg.cn/public/images/baikelogo-header2013.gif',
+                success: function () {
+                    alert("分享到QQ空间成功")
+                },
+                cancel: function () {
+                    //用户取消分享后执行的回调函数
+                }
+            });
+
+        });
+    }
+
+</script>
+
+
+
+  
+ </body>
+</html>

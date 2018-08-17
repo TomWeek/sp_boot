@@ -1,0 +1,30 @@
+/*header*/
+#topinfor{background:#257bb7;border-bottom:3px solid #1c6298;}
+.loginInfo a.topexit{background:url(../images/topexit.png) no-repeat left top;}
+.loginInfo_line{border-left:1px solid #155585;background:#459ddb;}
+.navigation a{background:#4c8ebb;color:#fff;}
+.navigation a:hover,.navigation a.current,.navigation a.current:hover{background:#1c6298;}
+/*面包屑字体划上颜色*/
+.bread-nav a:hover{color:#257bb7;}
+/*控制左侧和顶部的按钮*/
+.ctrl_lt_top a{background:url(../images/ctrliframe.jpg) no-repeat left top;}
+/*左侧菜单*/
+.tree li a{background:url(../images/leftmenu_icon.png) no-repeat left top;_background:url(../images/leftmenu_icon.gif) repeat-y left top;}
+.tree li a.tree-one:hover{background-color:#257bb7;}
+.tree li a.tree-one-active,.tree li a.tree-one-active:hover{background-color:#257bb7;}
+.tree li a.tree-two:hover,.tree li a.tree-two-2:hover{background-color:#e3f3ff;}
+.tree li a.tree-two-active,.tree li a.tree-two-active:hover,.tree li a.tree-two-active-2,.tree li a.tree-two-active-2:hover{background-color:#e3f3ff;color:#257bb7;}
+.tree li a.tree-one-hide-bg{background-color:#257bb7;color:#fff;}
+.tree li a.tree-two-hide-bg{background-color:#e3f3ff;color:#257bb7;}
+
+/*当前位置*/
+.breadcrumb span{color:#257bb7;}
+/*page*/
+.page-lt a b,.page-lt a:hover b{color:#257bb7;}
+.left_ctrl_bar_hide{background:url(../images/left_ctrl_bar_btn.png) no-repeat left top;right:0;}
+.left_ctrl_bar_show{background:url(../images/left_ctrl_bar_btn.png) no-repeat -23px top;}
+/*form submit style*/
+a.btn-fm,a.btn-fm b,a.btn-fm-disabled,a.btn-fm-disabled b{background:url(../images/formbtnbg.gif) no-repeat left top;}
+a.btn-fm b,a.btn-fm-disabled b{background-position:right -36px;}
+/*form focus*/
+.textfocus{border:1px solid #71adff;}

@@ -1,0 +1,60 @@
+﻿body {font: 12px/20px Arial,Tahoma,Helvetica,'微软雅黑','宋体',sans-serif;background:url(../images/lgbt.jpg) repeat-x left bottom #c7ebea;color:#4c4c4c;}
+html,body{height:100%;overflow:hidden;}
+table{ font-size:inherit;*border-collapse:collapse;*empty-cells:show; }
+table td{word-break:break-all;word-wrap:break-word; overflow:hidden;font-size:12px;}
+html,body,div,form,p,h3,h4,ul,li,a,b,span,input,label,img,i,h1,h2,h3,h4,h5,h6,dl,dt,dd,iframe{border:none; margin: 0; padding: 0;}
+h1,h2,h3,h4,h5,h6{font-size:14px;font-weight:normal;}
+a{outline: none;cursor:pointer;}
+a:active {star:expression(this.onFocus=this.blur());}
+a:focus { outline:0; }
+input,buttom{ outline:none; -moz-outside:none;}
+button::-moz-focus-inner,input::-moz-focus-inner{ border:0px;}
+/*去除点击按钮时的虚线*/
+input {blr:e­xpression(this.onFocus=this.blur())} /*for IE*/ 
+input {outline:}/*for FireFox*/ 
+img{border:none;}
+ul,li{ list-style:none outside none;}
+.clearfix:after {content: "."; display: block;height: 0; clear: both; visibility: hidden;}
+.clearfix{zoom:1;}
+.relative{position:relative;}
+.wordbold{font-weight:bold;}
+/*color*/
+a{ color:#2b2a2a; text-decoration:none;}
+a:hover,.loginInfo a:hover,.colorred{ color:#ff0000;}
+/*margin*/
+.marginlr10{margin-left:10px;margin-right:10px;}
+.lgi-info{position:absolute;top:50%;margin-top:-210px;left:50%;margin-left:-394px;width:789px;height:377px;background:url(../images/lg-infor.png) no-repeat left top;}
+.header{padding:20px 0 0 50px;}
+.foot{text-align:center;line-height:22px;text-align:center;width:100%;color:#424444;position:absolute;bottom:20px;}
+.lgi-tit{color:#006f6b;font-size:18px;text-shadow: 1px 1px 0 #fff;font-weight:bold;text-align:center;line-height:70px;}
+.lgi-input{background:#fff;width:358px;padding:29px 31px 14px 21px;height:214px;margin:0 auto;-webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;box-shadow: 1px 1px 1px #afcece;-moz-box-shadow: 1px 1px 1px #afcece;-webkit-box-shadow: 1px 1px 1px #afcece;filter: progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=10, Color='#afcece');
+-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=10, Color='#afcece')";}
+.lgi-item {padding: 0 0 19px 72px;_padding: 0 0 19px 69px;}
+.lgi-item .fm-label {float: left;width: 69px;margin-left: -69px;font-size:14px;line-height:35px;}
+.text{width:272px;border:1px solid #e6e6e6;background:#fafafa;line-height:21px;height:21px;padding:6px;-webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;vertical-align:middle;}
+.w160{width:160px;margin-right:20px;}
+.lgi-btn{border-top:1px solid #ededed;padding-top:15px;color:#999;margin-top:3px;position:relative;}
+.btn{float:left;display:inline-block;width:84px;height:34px;line-height:34px;background:url(../images/lgibtn.jpg) no-repeat -84px top;text-indent:-9999px;overflow:hidden;float:left;margin-right:13px;}
+.btn:hover{background-position:0 0;}
+.color-green{color:#006f6b;display:inline-block;line-height:34px;width:70px;float:left;}
+.fr{position:absolute;right:0;top:24px;display:inline-block;width:70px;text-align:right;line-height:14px;}
+.vmiddle{vertical-align:middle;}
+.marginr7{margin-right:7px;}
+.padd20{padding:20px;}
+.textcenter{text-align:center;}
+.marginb25{margin-bottom:25px;}
+.marginr15{margin-right:15px;}
+.popbtn{display: inline-block;padding:4px 10px;font-size: 14px;line-height: 20px;color: #fff;text-align: center;vertical-align: middle;cursor: pointer;background:#00b294;border:1px solid #008781;-webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;overflow:visible;}
+.popbtn:hover{background:#008781;color:#fff;}
+.btngray{background:#ececec;border:1px solid #cccccc;color:#333;}
+.btngray:hover{background:#dddddd;color:#333;}
+/* 設定提示字的文字顏色 */
+::-webkit-input-placeholder {color: b2b2b2;}
+:-moz-placeholder {color: b2b2b2;}
+.placeholder {color: #b2b2b2;}
+/* 設定提示字的文字顏色 */
+::-webkit-input-placeholder {color: b2b2b2;}
+:-moz-placeholder {color: b2b2b2;}
+.placeholder {color: #b2b2b2;}
+#Tooltip{background:url(../images/green-arrow.gif) no-repeat 20px bottom;padding-bottom:9px;}
+#DHTMLgoodies_formTooltipContent{padding:6px;color:#fff;}

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hudong.b16live.mapper.TLiveInfoMapper">
+
+
+    <resultMap id="tLiveInfo" type="com.hudong.b16live.bean.TLiveInfo">
+        <id column="id" property="id" />
+        <result column="title"  property="title"/>
+        <result column="detail"  property="detail"/>
+        <result column="start_time"  property="startTime" jdbcType="TIMESTAMP" />
+        <result column="end_time"  property="endTime"/>
+        <result column="cre_time" property="creTime"/>
+        <result column="is_hf" property="isHf"/>
+        <result column="cre_user" property="creUser"/>
+        <result column="speaker_id" property="speakerId"  />
+        <result column="OBS_ID"  property="obsId" />
+        <result column="ONLINE_NUM_ZSXS"  property="onlineNumZsxs" />
+        <result column="img_url_v"  property="imgUrlV"/>
+        <result column="img_url_h" property="imgUrlH"/>
+        <result column="status" property="status"/>
+        <result column="MOD_TIME"  property="modTime"/>
+        <result column="CHANNEL_ID"  property="channelId"/>
+        <result column="SPEAKER_GROUP_ID"  property="speakerGroupId"/>
+        <result column="DM_GROUP_ID"  property="dmGroupId"/>
+        <result column="ONLINE_NUM"  property="onlineNum"/>
+
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, title, detail,  start_time,end_time,cre_time, is_hf,cre_user,speaker_id, obs_id, img_url_v, img_url_h, MOD_TIME,SPEAKER_GROUP_ID,status,CHANNEL_ID,DM_GROUP_ID,ONLINE_NUM_ZSXS,ONLINE_NUM
+    </sql>
+    <select id="queryMaxId" resultType="int">
+        select  IFFULL(MAX(id),0)  from t_live_info
+    </select>
+    <insert id="addLive" parameterType="com.hudong.b16live.bean.TLiveInfo"  useGeneratedKeys="true"  keyProperty="id">
+        insert into t_live_info(SPEAKER_NAME,OPT_NAME,TITLE,DETAIL,START_TIME,OBS_ID,ONLINE_NUM_ZSXS,IMG_URL_H,IMG_URL_V,DEL_FLAG,IS_HF,CRE_TIME,STATUS,DM_GROUP_ID,SPEAKER_GROUP_ID,CHANNEL_ID,MOD_TIME,ONLINE_NUM) values(#{speakerName},#{optName},#{title},#{detail},#{startTime},#{obsId},#{onlineNumZsxs},#{imgUrlH},#{imgUrlV},#{delFlag},#{isHf},#{creTime},#{status},#{dmGroupId},#{speakerGroupId},#{channelId},#{modTime},#{onlineNum})
+
+     </insert>
+
+    <select id="getAdminList" resultMap="tLiveInfo" >
+        select * from t_live_info
+    </select>
+
+    <select id="appLiveIndex" resultMap="tLiveInfo" >
+        select *  from t_live_info where DEL_FLAG='0' order by START_TIME desc limit 1
+    </select>
+
+    <select id="getAdminListPage" resultMap="tLiveInfo" >
+        select
+        <include refid="Base_Column_List"/>
+        from t_live_info where DEL_FLAG='0'
+        <if test="id != null and id !='' ">
+            and id=#{id}
+        </if>
+        <if test="status != null and status !='' ">
+            and status= #{status}
+        </if>
+        <if test="title != null and title !='' ">
+            and title=#{title}
+        </if>
+        <if test="startTime != null  and startTime !='' ">
+            and start_time > #{startTime}
+        </if>
+        <if test="endTime != null and endTime !='' ">
+            <![CDATA[ and end_time <= #{endTime} ]]>
+        </if>
+           order by CRE_TIME desc
+    </select>
+
+    <select id="getAdminListPageSize" resultType="int" >
+        select count(id)    from t_live_info where DEL_FLAG='0'
+        <if test="id != null and id !='' ">
+            and id=#{id}
+        </if>
+        <if test="status != null and status !='' ">
+            and status= #{status}
+        </if>
+        <if test="title != null and title !='' ">
+            and title=#{title}
+        </if>
+        <if test="startTime != null and startTime !='' ">
+            and start_time > #{startTime}
+        </if>
+        <if test="endTime != null and endTime !='' ">
+            <![CDATA[ and end_time <= #{endTime} ]]>
+        </if>
+
+    </select>
+
+    <update id="updateBeginOrEnd"   parameterType="com.hudong.b16live.bean.TLiveInfo" >
+       update t_live_info
+       <set>
+           <if test="endTime != null  ">
+                end_time= #{endTime},
+
+           </if>
+           <if test="speakerGroupId != null  ">
+               SPEAKER_GROUP_ID= #{speakerGroupId},
+
+           </if>
+           <if test="dmGroupId != null  ">
+               DM_GROUP_ID= #{dmGroupId},
+
+           </if>
+           <if test="modTime != null  ">
+               mod_time= #{modTime},
+
+           </if>
+           <if test="status != null  ">
+               status= #{status},
+           </if>
+
+       </set>
+        where id=#{id}
+    </update>
+    <update id="deleteLive" >
+        update  t_live_info set del_flag='1' WHERE id = #{id}
+    </update>
+
+    <select id="findStartLiveList" resultMap="tLiveInfo" >
+        <![CDATA[
+        SELECT * FROM `t_live_info` where START_TIME>NOW() and START_TIME <= DATE_ADD(NOW(),INTERVAL 10 MINUTE)  and DEL_FLAG='0' ORDER  BY  START_TIME
+       ]]>
+    </select>
+    <select id="getAllLive" resultMap="tLiveInfo" >
+        <![CDATA[
+        SELECT * FROM `t_live_info` where DEL_FLAG='0'
+       ]]>
+    </select>
+    <select id="getLiveInfoById" parameterType="java.lang.Integer" resultMap="tLiveInfo" >
+        select
+        <include refid="Base_Column_List"/>
+        from t_live_info where DEL_FLAG='0'  and id=#{liveId}
+    </select>
+
+    <select id="getIdByChannelId" resultType="map">
+       SELECT ID from t_live_info WHERE 1=1 AND CHANNEL_ID=#{channelId}
+    </select>
+
+    <select id="get"  resultMap="tLiveInfo" >
+       SELECT * from t_live_info WHERE  id=#{id}
+    </select>
+
+    <!--<select id="getAppLiveList" resultMap="tLiveInfo" >
+        select * from t_live_info where  del_flag=0 order by status ,cre_time desc
+    </select>-->
+
+    <select id="getAppLiveList" resultMap="tLiveInfo" >
+        select * from t_live_info where  del_flag=0 order by start_time  desc
+    </select>
+
+    <select id="getAppLiveListSize"  resultType="int"  >
+        select count(id) from t_live_info where  del_flag=0 order by status ,cre_time desc
+    </select>
+    <update id="updateLive"   parameterType="com.hudong.b16live.bean.TLiveInfo">
+        UPDATE t_live_info
+        <trim prefix="set" suffixOverrides=",">
+            <if test="onlineNum!=null">ONLINE_NUM=#{onlineNum},</if>
+            <if test="status!=null">status=#{status},</if>
+            <if test="title!=null">title=#{title},</if>
+            <if test="detail!=null">detail=#{detail},</if>
+            <if test="startTime!=null">start_time=#{startTime},</if>
+            <if test="isHf!=null">is_hf=#{isHf},</if>
+            <if test="obsId!=null">obs_id=#{obsId},</if>
+            <if test="modTime!=null">MOD_TIME=#{modTime},</if>
+            <if test="channelId!=null">CHANNEL_ID=#{channelId},</if>
+            <if test="imgUrlV!=null">img_url_v=#{imgUrlV},</if>
+            <if test="imgUrlH!=null">img_url_h=#{imgUrlH},</if>
+            <if test="speakerGroupId!=null">SPEAKER_GROUP_ID=#{speakerGroupId},</if>
+            <if test="dmGroupId!=null">DM_GROUP_ID=#{dmGroupId},</if>
+            <if test="onlineNumZsxs!=null">ONLINE_NUM_ZSXS=#{onlineNumZsxs},</if>
+        </trim>
+        WHERE id=#{id}
+
+
+    </update>
+
+</mapper>

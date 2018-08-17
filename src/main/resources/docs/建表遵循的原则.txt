@@ -1,0 +1,7 @@
+﻿建表遵循的几点原则：
+
+1 表的描述，字段的注释要写清楚。
+2 id类型的要尽量为int型。
+3 状态类字段统一为tinyint。
+4 CRE_TIME,CRE_USER,MOD_TIME,MOD_USER，DEL_FLAG  :创建时间，创建人，修改时间，修改人，删除标记  一定要有。
+5 date类型的字段统一为timestamp。

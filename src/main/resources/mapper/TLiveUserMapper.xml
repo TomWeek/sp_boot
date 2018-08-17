@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hudong.b16live.mapper.TLiveUserMapper">
+
+	<resultMap id="tLiveUser" type="com.hudong.b16live.bean.TLiveUser">
+        <id column="id" property="id" />
+        <result column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="nickname" property="nickname" />
+	</resultMap>
+
+    <insert id="addUser">
+        insert into t_live_user(username,password,nickname) values(#{username},#{password},#{nickname})
+    </insert>
+    
+    <update id="updateUser">
+       update t_live_user
+       <set>
+           <if test="username != null">
+                username= #{username},
+           </if>
+           <if test="password != null">
+               password= #{password},
+           </if>
+           <if test="nickname != null">
+               nickname= #{nickname},
+           </if>
+       </set>
+        where id=#{id}
+    </update>
+    
+    <select id="queryById" resultType="tLiveUser">
+        select * from t_live_user where live_id = #{liveId}
+    </select>
+    
+    <select id="queryByName" resultMap="tLiveUser">
+        select * from t_live_user where username = #{username} limit 1
+    </select> 
+
+</mapper>

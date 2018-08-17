@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hudong.b16live.mapper.TLivePlayUrlMapper">
+
+	<resultMap id="tLivePlayUrl" type="com.hudong.b16live.bean.TLivePlayUrl">
+        <id column="id" property="id" />
+        <result column="live_id" property="liveId" />
+        <result column="play_url" property="playUrl" />
+        <result column="file_id" property="fileId" />
+        <result column="task_id" property="taskId" />
+        <result column="order_num" property="orderNum" />
+        <result column="del_flag" property="delFlag" />
+        <result column="cre_time" property="creTime" />
+	</resultMap>
+
+    <insert id="saveTLivePlayUrl">
+        insert into t_live_play_url(live_id,play_url,file_id,task_id,order_num,cre_time) values(#{liveId},#{playUrl},#{fileId},#{taskId},#{orderNum},now())
+    </insert>
+    
+    <update id="updateTLivePlayUrl">
+       update t_live_play_url
+       <set>
+           <if test="liveId != null">
+                live_id= #{liveId},
+           </if>
+           <if test="playUrl != null">
+               play_url= #{playUrl},
+           </if>
+           <if test="fileId != null">
+               file_id= #{fileId},
+           </if>
+           <if test="taskId != null">
+               task_id= #{taskId},
+           </if>
+       </set>
+        where id=#{id}
+    </update>
+    
+    <select id="countByLiveId" resultType="int">
+        select count(1) from t_live_play_url where live_id = #{liveId} and del_flag = 0
+    </select>
+    
+    <select id="queryByLiveId" resultMap="tLivePlayUrl" >
+        select * from t_live_play_url where live_id = #{liveId} and del_flag = 0 order by cre_time desc
+    </select>
+    
+    <select id="queryByTaskId" resultMap="tLivePlayUrl" >
+        select * from t_live_play_url where task_id = #{taskId} and del_flag = 0 order by cre_time desc
+    </select>
+
+</mapper>

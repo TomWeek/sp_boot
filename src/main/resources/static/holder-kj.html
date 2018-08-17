@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <link href="./skins/blue/css/master.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="./skins/blue/js/Map.js"></script>
+        <script type="text/javascript" src="./skins/blue/js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="./skins/blue/js/master.js"></script>
+        <script>
+            function customWidth(evt) {
+            var aa=$(".leftmenu", parent.document).css("display");
+            if(aa!="none"){ //判断 当leftmenu不是隐藏的时候 才可以执行拖动
+                document.onmousemove = function(evt) {
+                    var evtObj = window.event ? event: evt;
+                    if (evtObj.screenX && $(".leftmenu", parent.document)) {
+                       $(".leftmenu", parent.document).css("width",evtObj.screenX+"px");//设置父级内容区左侧的宽度
+		    			var wd_wt=parent.document.documentElement.clientWidth;//父级窗口的宽度
+		    			var wt_holder=$(".kj-holder", parent.document).width();//控制区域宽度
+		    			var wt_rt=wd_wt-evtObj.screenX-wt_holder;//父级内容右侧宽度
+                       $(".kj-rt", parent.document).css("width",wt_rt+"px");//设置父级内容区右侧的宽度
+                    }
+                };
+               }
+            }
+            function cancelCustomWidth() {
+                document.onmousemove = null; //取消onmousemove事件
+            }
+	</script>
+    </head>
+    <body style="cursor:w-resize" onmousedown="customWidth(event)" onmouseup="cancelCustomWidth();">
+  	  <table width="100%" border="0" cellpadding="0" cellspacing="0" height="100%">
+            <tbody>
+                <tr>
+                    <td valign="bottom"><input type="button" value="" id="ctrl_left2" onclick="ctrl_left()" class="left_ctrl_bar_show"></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
