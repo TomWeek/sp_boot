@@ -57,5 +57,5 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 
-### 开发配置文件单独添加
+### 开发配置文件单独添加 add by tom
 application-dev.yml
